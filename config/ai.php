@@ -1,4 +1,5 @@
 <?php
+use Laravel\Ai\Enums\Lab;
 
 return [
 
@@ -13,12 +14,15 @@ return [
     |
     */
 
-    'default' => 'openai',
-    'default_for_images' => 'gemini',
-    'default_for_audio' => 'openai',
-    'default_for_transcription' => 'openai',
-    'default_for_embeddings' => 'openai',
-    'default_for_reranking' => 'cohere',
+    // 'default' => 'openai',
+    // 'default_for_images' => 'gemini',
+    // 'default_for_audio' => 'openai',
+    // 'default_for_transcription' => 'openai',
+    // 'default_for_embeddings' => 'openai',
+    // 'default_for_reranking' => 'cohere',
+        'default' => [
+        'text' => Lab::Ollama,
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -102,10 +106,17 @@ return [
             'url' => env('MISTRAL_URL', 'https://api.mistral.ai/v1'),
         ],
 
+        // 'ollama' => [
+        //     'driver' => 'ollama',
+        //     'key' => env('OLLAMA_API_KEY', ''),
+        //     'url' => env('OLLAMA_BASE_URL', 'http://localhost:11434'),
+        // ],
+        
         'ollama' => [
             'driver' => 'ollama',
-            'key' => env('OLLAMA_API_KEY', ''),
-            'url' => env('OLLAMA_BASE_URL', 'http://localhost:11434'),
+            'key' => env('OLLAMA_API_KEY'),
+            'model' => env('OLLAMA_MODEL', 'qwen2.5-coder:0.5b'),
+            'url' => env('OLLAMA_URL', 'http://127.0.0.1:11434'),
         ],
 
         'openai' => [
